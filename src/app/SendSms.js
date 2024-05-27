@@ -10,16 +10,21 @@ const SendSms = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const res = await fetch('/api/send-sms', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ to, message })
-        });
+        try {
+            const res = await fetch('/api/sendSms', { // Replace with your function name
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ to, message }),
+            });
 
-        const data = await res.json();
-        setResponse(data);
+            const data = await res.json();
+            setResponse(data);
+        } catch (error) {
+            console.error('Error sending SMS:', error);
+            setResponse({ success: false, error: 'An error occurred.' }); // Inform user of error
+        }
     };
 
     return (
