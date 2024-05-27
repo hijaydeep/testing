@@ -1,4 +1,6 @@
 export default async function handler(req, res) {
+    console.log(req)
+    console.log('hi')
     // Replace with your actual Twilio credentials (stored securely in environment variables)
     const accountSid = process.env.TWILIO_ACCOUNT_SID;
     const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -21,6 +23,6 @@ export default async function handler(req, res) {
         res.status(200).json({ success: True, messageSid: response.sid });
     } catch (error) {
         console.error('Error sending SMS:', error);
-        res.status(500).json({ success: False, error: 'An error occurred.' });
+        res.status(500).json({ success: False, error: 'hi error occurred.' });
     }
 }
